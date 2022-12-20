@@ -1,12 +1,9 @@
 package com.triple.travelmanage.travel.adapter.out.persistence;
 
-import static com.triple.travelmanage.common.fixture.city.CityEntityFixture.첫번째_도시;
 import static com.triple.travelmanage.common.fixture.travel.TravelEntityFixture.첫번째여행지;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.triple.travelmanage.city.domain.City;
-import com.triple.travelmanage.city.exception.CityException;
 import com.triple.travelmanage.common.repository.BaseRepositoryTest;
 import com.triple.travelmanage.travel.domain.Travel;
 import com.triple.travelmanage.travel.exception.TravelException;

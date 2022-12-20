@@ -1,6 +1,6 @@
 package com.triple.travelmanage.city.application.service;
 
-import static com.triple.travelmanage.common.fixture.city.CityEntityFixture.첫번째_도시;
+import static com.triple.travelmanage.common.fixture.city.CityEntityFixture.첫번째_도시_엔티티;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 
@@ -26,7 +26,7 @@ class GetCityServiceTest {
   @Test
   void getCity(){
     //given
-    given(getCityPort.getCityById(1L)).willReturn(첫번째_도시().toDomain());
+    given(getCityPort.getCityById(1L)).willReturn(첫번째_도시_엔티티().toDomain());
 
     //when
     CityInfo city = getCityService.getCity(1L);
