@@ -1,7 +1,6 @@
 package com.triple.travelmanage.city.adapter.out.persistence;
 
 import jakarta.persistence.LockModeType;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
