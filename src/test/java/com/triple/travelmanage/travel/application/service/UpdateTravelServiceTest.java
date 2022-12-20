@@ -54,6 +54,6 @@ class UpdateTravelServiceTest {
 
     TravelInfo travelInfo = updateTravelService.updateTravel(command);
 
-    assertThat(travelInfo.cityId()).isEqualTo(2L);
+    assertThat(travelInfo.cityInfo().id()).isEqualTo(2L);
   }
 }

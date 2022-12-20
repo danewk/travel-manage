@@ -32,7 +32,7 @@ class GetTravelServiceTest {
     //when
     TravelInfo travel = getTravelService.getTravel(1L);
 
-    assertEquals(1L, travel.cityId());
+    assertEquals(1L, travel.cityInfo().id());
 
 
   }

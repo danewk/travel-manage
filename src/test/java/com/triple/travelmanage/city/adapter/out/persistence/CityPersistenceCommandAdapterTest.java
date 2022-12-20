@@ -9,7 +9,6 @@ import com.triple.travelmanage.city.domain.City;
 import com.triple.travelmanage.city.exception.CityException;
 import com.triple.travelmanage.common.exception.ErrorMessage;
 import com.triple.travelmanage.common.repository.BaseRepositoryTest;
-import java.time.LocalDateTime;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

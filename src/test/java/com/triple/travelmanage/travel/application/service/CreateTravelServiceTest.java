@@ -47,7 +47,7 @@ class CreateTravelServiceTest {
 
     TravelInfo travel = createTravelService.createTravel(여행지등록커맨드());
 
-    assertThat(travel.cityId()).isEqualTo(1L);
+    assertThat(travel.cityInfo().id()).isEqualTo(1L);
   }
 
   @DisplayName("출발일이 종료일보다 늦은 경우 에러 발생")
