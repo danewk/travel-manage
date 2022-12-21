@@ -3,17 +3,17 @@
 ### 개요
 - 구현한 서버는 총 9개의 REST API를 제공함, 별도로 작성된 화면은 존재하지 않음. 
 #### REST API로 개발 된 기능은 다음과 같음.
-    - `GET - /api/v1/user/{userId}/cities` : 사용자별 도시 목록 조회 API
-    - `POST - /api/v1/city` : 도시 등록 API
-    - `POST - /api/v1/cities/{cityId}` : 도시 단건 조회 API
-    - `PUT - /api/v1/cities/{cityId}` : 도시 수정 API
-    - `DELETE - /api/v1/cities/{cityId}` : 도시 삭제 API
-    - `POST - /api/v1/travel` : 여행 등록 API
-    - `POST - /api/v1/travel/{travelId}` : 여행 수정 API
-    - `GET - /api/v1/travel/{travelId}` : 여행 단건 조회 API
-    - `DELETE - /api/v1/travel/{travelId}` : 여행 삭제 API
+    - GET - /api/v1/user/{userId}/cities : 사용자별 도시 목록 조회 API
+    - POST - /api/v1/city : 도시 등록 API
+    - POST - /api/v1/cities/{cityId} : 도시 단건 조회 API
+    - PUT - /api/v1/cities/{cityId} : 도시 수정 API
+    - DELETE - /api/v1/cities/{cityId} : 도시 삭제 API
+    - POST - /api/v1/travel : 여행 등록 API
+    - POST - /api/v1/travel/{travelId} : 여행 수정 API
+    - GET - /api/v1/travel/{travelId} : 여행 단건 조회 API
+    - DELETE - /api/v1/travel/{travelId} : 여행 삭제 API
 - 서비스는 8083포트로 서버를 구동한다.
-    - ` http://localhost:8083`
+  - http://localhost:8083
 - 본 서비스의 Swaager Api spec 아래와 같다.
   - http://localhost:8083/swagger-ui/index.html
 
