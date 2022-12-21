@@ -29,7 +29,7 @@
 #### Junit5 사용
     - 단위테스트 : 8083 포트 사용 (application-dev.yml)
     API 검증테스트 : 8084 포트 사용 (applicaiton-test.yml)
-#### 형상관리 : git
+#### 형상관리 : git.. (로컬로 계속 작업하다가 마지막에 올렸네요.. 깃에 제출만 하면 되는지 알았네요ㅠㅠ)
 #### 환경별로 데이터 베이스 구분
     - dev, test : H2
     - prd : MySql
