@@ -11,4 +11,13 @@ public class CitySearchHistoryEntityFixture {
         .count(10L)
         .build();
   }
+
+  public static CitySearchHistoryEntity 유저1_도시1_조회수1_엔티티(){
+    return CitySearchHistoryEntity.builder()
+        .cityId(1L)
+        .uniqueId(null)
+        .userId(1L)
+        .count(1L)
+        .build();
+  }
 }

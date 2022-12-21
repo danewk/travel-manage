@@ -33,7 +33,7 @@ public class SyncCitySearchHistoryService implements SyncCitySearchHistoryUseCas
         deleteHistory(savedHistory);
         return createHistory(command.cityId(), command.userId());
       }
-      return updateHistory(savedHistory);
+      return updateHistory(savedHistory.getId());
     }
   }
 
@@ -42,9 +42,8 @@ public class SyncCitySearchHistoryService implements SyncCitySearchHistoryUseCas
     deleteCitySearchHistoryPort.delete(savedHistory);
   }
 
-  private CitySearchHistory updateHistory(CitySearchHistory savedHistory) {
-    savedHistory.increaseCount();
-    return updateCitySearchHistoryPort.updateCount(savedHistory);
+  private CitySearchHistory updateHistory(Long id) {
+    return updateCitySearchHistoryPort.updateCount(id);
   }
 
   private CitySearchHistory createHistory(Long cityId, Long userId) {

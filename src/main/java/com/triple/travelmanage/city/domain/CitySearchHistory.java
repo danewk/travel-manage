@@ -27,7 +27,8 @@ public class CitySearchHistory {
     this.deletedAt = LocalDateTime.now();
   }
 
-  public void increaseCount() {
+  public Long increaseCount() {
     this.count = count + 1;
+    return count;
   }
 }

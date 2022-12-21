@@ -70,7 +70,7 @@ public class CitySearchHistoryEntity extends BaseEntity {
         .build();
   }
 
-  public void increaseCount(Long count) {
-    this.count = count;
+  public void increaseCount() {
+    this.count++;
   }
 }
