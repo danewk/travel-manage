@@ -17,7 +17,9 @@ import lombok.NoArgsConstructor;
 @Table(name = "city_search_history",
     indexes = {
         @Index(name = "idx_city_search_history_created_at", columnList = "created_at"),
-        @Index(name = "idx_city_search_history_deleted_at", columnList = "deleted_at")
+        @Index(name = "idx_city_search_history_deleted_at", columnList = "deleted_at"),
+        @Index(name = "idx_city_search_history_user_id", columnList = "user_id"),
+        @Index(name = "idx_city_search_history_city_id", columnList = "city_id"),
     },
     uniqueConstraints = {
         @UniqueConstraint(name = "udx_user_id_city_id", columnNames = {"user_id", "city_id", "unique_id"})

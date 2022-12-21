@@ -17,12 +17,14 @@ import lombok.NoArgsConstructor;
     indexes = {
         @Index(name = "idx_cities_created_at", columnList = "created_at"),
         @Index(name = "idx_cities_deleted_at", columnList = "deleted_at"),
+        @Index(name = "idx_cities_city_name", columnList = "city_name"),
+        @Index(name = "idx_cities_country", columnList = "country")
     })
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class CityEntity extends BaseEntity {
 
-  @Column(name = "cityName")
+  @Column(name = "city_name")
   private String cityName;
 
   @Column(name = "country")
