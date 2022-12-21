@@ -35,7 +35,18 @@ public class CitySearchHistoryDomainFixture {
         .count(1L)
         .userId(1L)
         .cityId(1L)
+        .createdAt(LocalDateTime.now())
         .id(1L)
+        .build();
+  }
+
+  public static CitySearchHistory 유저1_도시1_조회_내역_유효기간지난_도메인(){
+    return CitySearchHistory.builder()
+        .id(1L)
+        .cityId(1L)
+        .userId(1L)
+        .count(10L)
+        .createdAt(LocalDateTime.now().minusDays(8))
         .build();
   }
 }

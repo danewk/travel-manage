@@ -2,6 +2,7 @@ package com.triple.travelmanage.city.application.service;
 
 import static com.triple.travelmanage.common.fixture.city.CitySearchHistoryDomainFixture.유저1_도시1_조회_내역_1증가_도메인;
 import static com.triple.travelmanage.common.fixture.city.CitySearchHistoryDomainFixture.유저1_도시1_조회_내역_도메인;
+import static com.triple.travelmanage.common.fixture.city.CitySearchHistoryDomainFixture.유저1_도시1_조회_내역_유효기간지난_도메인;
 import static com.triple.travelmanage.common.fixture.city.CitySearchHistoryDomainFixture.유저1_도시1_조회후_내역은_존재하지않는_도메인;
 import static com.triple.travelmanage.common.fixture.city.CitySearchHistoryDomainFixture.유저1_도시1_조회후_내역은_존재하지않아_새로생성된_도메인;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -69,6 +70,19 @@ class SyncCitySearchHistoryServiceTest {
     assertThat(syncCitySearchHistoryService.syncHistory(command).getCount()).isEqualTo(1L);
   }
 
+  @DisplayName("도시조회 내역 유효기간이 지나 삭제 후 신규 생성")
+  @Test
+  void delete_create_city_search_history(){
+    given(getCitySearchHistoryPort.getSearchHistory(anyLong(), anyLong())).willReturn(유저1_도시1_조회_내역_유효기간지난_도메인());
+    given(createCitySearchHistoryPort.createSearchHistory(any())).willReturn(유저1_도시1_조회후_내역은_존재하지않아_새로생성된_도메인());
+
+    //when
+    SyncHistoryCommand command = SyncHistoryCommand.of(1L, 1L);
+
+    //then
+    assertThat(syncCitySearchHistoryService.syncHistory(command)).isNotNull();
+    assertThat(syncCitySearchHistoryService.syncHistory(command).getCount()).isEqualTo(1L);
+  }
 
 
 }
