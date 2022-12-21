@@ -8,6 +8,7 @@ import com.triple.travelmanage.city.application.port.in.SyncCitySearchHistoryUse
 import com.triple.travelmanage.city.application.port.in.UpdateCityUseCase;
 import com.triple.travelmanage.city.application.port.in.command.CityCreateCommand;
 import com.triple.travelmanage.city.application.port.in.command.CityUpdateCommand;
+import com.triple.travelmanage.city.application.port.in.command.SyncHistoryCommand;
 import com.triple.travelmanage.common.annotation.WebAdapter;
 import com.triple.travelmanage.common.response.ResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -64,7 +65,7 @@ public class CityController {
   public ResponseDto<CityInfo> getCity(@PathVariable("cityId") Long cityId,
       @Valid @RequestBody CityRetrieveRequestDto requestDto
   ) {
-    syncCitySearchHistoryUseCase.syncHistory(cityId, requestDto);
+    syncCitySearchHistoryUseCase.syncHistory(SyncHistoryCommand.of(cityId, requestDto.userId()));
     return ResponseDto.ok(getCityUseCase.getCity(cityId));
   }
 

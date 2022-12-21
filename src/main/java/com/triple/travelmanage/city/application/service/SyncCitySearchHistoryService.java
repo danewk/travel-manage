@@ -1,7 +1,7 @@
 package com.triple.travelmanage.city.application.service;
 
-import com.triple.travelmanage.city.adapter.in.web.CityRetrieveRequestDto;
 import com.triple.travelmanage.city.application.port.in.SyncCitySearchHistoryUseCase;
+import com.triple.travelmanage.city.application.port.in.command.SyncHistoryCommand;
 import com.triple.travelmanage.city.application.port.out.CreateCitySearchHistoryPort;
 import com.triple.travelmanage.city.application.port.out.DeleteCitySearchHistoryPort;
 import com.triple.travelmanage.city.application.port.out.GetCitySearchHistoryPort;
@@ -24,35 +24,35 @@ public class SyncCitySearchHistoryService implements SyncCitySearchHistoryUseCas
   private final UpdateCitySearchHistoryPort updateCitySearchHistoryPort;
 
   @Override
-  public void syncHistory(Long cityId, CityRetrieveRequestDto requestDto) {
-    CitySearchHistory savedHistory = getCitySearchHistoryPort.getSearchHistory(cityId, requestDto.userId());
+  public CitySearchHistory syncHistory(SyncHistoryCommand command) {
+    CitySearchHistory savedHistory = getCitySearchHistoryPort.getSearchHistory(command.cityId(), command.userId());
     if (Objects.isNull(savedHistory.getId())) {
-      createHistory(cityId, requestDto);
+      return createHistory(command.cityId(), command.userId());
     } else {
       if (savedHistory.getCreatedAt().isBefore(LocalDateTime.now().minusDays(7))) {
-        deleteHistory(cityId, requestDto, savedHistory);
+        deleteHistory(savedHistory);
+        return createHistory(command.cityId(), command.userId());
       }
-      updateHistory(savedHistory);
+      return updateHistory(savedHistory);
     }
   }
 
-  private void deleteHistory(Long cityId, CityRetrieveRequestDto requestDto, CitySearchHistory savedHistory) {
+  private void deleteHistory(CitySearchHistory savedHistory) {
     savedHistory.delete();
     deleteCitySearchHistoryPort.delete(savedHistory);
-    createHistory(cityId, requestDto);
   }
 
-  private void updateHistory(CitySearchHistory savedHistory) {
+  private CitySearchHistory updateHistory(CitySearchHistory savedHistory) {
     savedHistory.increaseCount();
-    updateCitySearchHistoryPort.updateCount(savedHistory);
+    return updateCitySearchHistoryPort.updateCount(savedHistory);
   }
 
-  private void createHistory(Long cityId, CityRetrieveRequestDto requestDto) {
+  private CitySearchHistory createHistory(Long cityId, Long userId) {
     CitySearchHistory citySearchHistory = CitySearchHistory.builder()
         .count(1L)
-        .userId(requestDto.userId())
+        .userId(userId)
         .cityId(cityId)
         .build();
-    createCitySearchHistoryPort.createSearchHistory(citySearchHistory);
+    return createCitySearchHistoryPort.createSearchHistory(citySearchHistory);
   }
 }

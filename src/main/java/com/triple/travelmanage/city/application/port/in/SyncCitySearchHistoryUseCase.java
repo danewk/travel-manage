@@ -1,9 +1,10 @@
 package com.triple.travelmanage.city.application.port.in;
 
-import com.triple.travelmanage.city.adapter.in.web.CityRetrieveRequestDto;
+import com.triple.travelmanage.city.application.port.in.command.SyncHistoryCommand;
+import com.triple.travelmanage.city.domain.CitySearchHistory;
 
 public interface SyncCitySearchHistoryUseCase {
 
-  void syncHistory(Long cityId, CityRetrieveRequestDto requestDto);
+  CitySearchHistory syncHistory(SyncHistoryCommand command);
 
 }

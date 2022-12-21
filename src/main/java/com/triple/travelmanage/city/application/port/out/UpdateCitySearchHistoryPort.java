@@ -4,6 +4,6 @@ import com.triple.travelmanage.city.domain.CitySearchHistory;
 
 public interface UpdateCitySearchHistoryPort {
 
-  void updateCount(CitySearchHistory savedHistory);
+  CitySearchHistory updateCount(CitySearchHistory savedHistory);
 
 }

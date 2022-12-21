@@ -31,10 +31,11 @@ public class CitySearchHistoryPersistenceCommandAdapter implements CreateCitySea
   }
 
   @Override
-  public void updateCount(CitySearchHistory savedHistory) {
+  public CitySearchHistory updateCount(CitySearchHistory savedHistory) {
     CitySearchHistoryEntity citySearchHistoryEntity = citySearchHistoryRepository.findForUpdate(savedHistory.getId())
         .orElseThrow(() -> new CityException(ErrorMessage.DELETE_HISTORY_ERROR.getMessage()));
     citySearchHistoryEntity.increaseCount(savedHistory.getCount());
+    return citySearchHistoryEntity.toDomain();
   }
 
   private CitySearchHistoryEntity getCitySearchHistoryEntity(CitySearchHistory savedHistory) {
