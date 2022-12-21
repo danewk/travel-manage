@@ -64,8 +64,9 @@ public class CityController {
   public ResponseDto<CityInfo> getCity(@PathVariable("cityId") Long cityId,
       @Valid @RequestBody CityRetrieveRequestDto requestDto
   ) {
+    CityInfo city = getCityUseCase.getCity(cityId);
     syncCitySearchHistoryUseCase.syncHistory(SyncHistoryCommand.of(cityId, requestDto.userId()));
-    return ResponseDto.ok(getCityUseCase.getCity(cityId));
+    return ResponseDto.ok(city);
   }
 
   @Operation(tags = "City", summary = "도시 수정", responses = {
