@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @WebAdapter(path = "/api/v1")
@@ -36,8 +35,7 @@ public class TravelController {
   public ResponseDto<?> registerTravel(
       @Valid @RequestBody TravelCreateRequestDto requestDto
   ) {
-    createTravelUseCase.createTravel(TravelCreateCommand.of(requestDto));
-    return ResponseDto.ok();
+    return ResponseDto.ok(createTravelUseCase.createTravel(TravelCreateCommand.of(requestDto)));
   }
 
   @Operation(tags = "Travel", summary = "여행 수정", responses = {
@@ -48,8 +46,7 @@ public class TravelController {
       @PathVariable("travelId") Long travelId,
       @Valid @RequestBody TravelUpdateRequestDto travelUpdateRequestDto
   ) {
-    updateTravelUseCase.updateTravel(TravelUpdateCommand.of(travelUpdateRequestDto, travelId));
-    return ResponseDto.ok();
+    return ResponseDto.ok(updateTravelUseCase.updateTravel(TravelUpdateCommand.of(travelUpdateRequestDto, travelId)));
   }
 
   @Operation(tags = "Travel", summary = "여행 단건 조회", responses = {

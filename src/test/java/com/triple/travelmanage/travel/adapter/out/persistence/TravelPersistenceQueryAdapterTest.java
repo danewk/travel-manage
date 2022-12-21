@@ -1,6 +1,6 @@
 package com.triple.travelmanage.travel.adapter.out.persistence;
 
-import static com.triple.travelmanage.common.fixture.travel.TravelEntityFixture.첫번째여행지;
+import static com.triple.travelmanage.common.fixture.travel.TravelEntityFixture.사용자1_도시1_여행지_엔티티;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,7 +29,7 @@ class TravelPersistenceQueryAdapterTest extends BaseRepositoryTest {
 
   @BeforeEach
   void setUp() {
-    travelRepository.saveAndFlush(첫번째여행지());
+    travelRepository.saveAndFlush(사용자1_도시1_여행지_엔티티());
   }
 
   @AfterEach
@@ -41,7 +41,7 @@ class TravelPersistenceQueryAdapterTest extends BaseRepositoryTest {
   @Test
   void getCity(){
     Travel travel = travelPersistenceQueryAdapter.getTravelById(1L);
-    assertEquals(첫번째여행지().getCityId(), travel.getCityId());
+    assertEquals(사용자1_도시1_여행지_엔티티().getCityId(), travel.getCityId());
   }
 
   @DisplayName("단일 도시 조회 실패시 예외 발생")

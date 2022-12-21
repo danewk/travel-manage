@@ -1,6 +1,6 @@
 package com.triple.travelmanage.travel.adapter.out.persistence;
 
-import static com.triple.travelmanage.common.fixture.travel.TravelEntityFixture.첫번째여행지;
+import static com.triple.travelmanage.common.fixture.travel.TravelEntityFixture.사용자1_도시1_여행지_엔티티;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,7 +32,7 @@ class TravelPersistenceCommandAdapterTest extends BaseRepositoryTest {
 
   @BeforeEach
   void setUp() {
-    travelRepository.saveAndFlush(첫번째여행지());
+    travelRepository.saveAndFlush(사용자1_도시1_여행지_엔티티());
   }
 
   @AfterEach

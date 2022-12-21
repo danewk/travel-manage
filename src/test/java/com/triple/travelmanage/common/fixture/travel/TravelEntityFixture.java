@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class TravelEntityFixture {
 
-  public static TravelEntity 첫번째여행지(){
+  public static TravelEntity 사용자1_도시1_여행지_엔티티(){
     return TravelEntity.builder()
         .userId(1L)
         .cityId(1L)
@@ -13,5 +13,16 @@ public class TravelEntityFixture {
         .endDate(LocalDate.of(2022, 12, 22))
         .build();
   }
+
+  public static TravelEntity 사용자1_도시2_여행지_엔티티(){
+    return TravelEntity.builder()
+        .userId(1L)
+        .cityId(2L)
+        .startDate(LocalDate.of(2022, 12, 25))
+        .endDate(LocalDate.of(2022, 12, 29))
+        .build();
+  }
+
+
 
 }
