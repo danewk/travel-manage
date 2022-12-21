@@ -54,8 +54,7 @@ public class CityController {
   public ResponseDto<?> registerCity(
       @Valid @RequestBody CityCreateRequestDto requestDto
   ) {
-    createCityUseCase.createCity(CityCreateCommand.of(requestDto));
-    return ResponseDto.ok();
+    return ResponseDto.ok(createCityUseCase.createCity(CityCreateCommand.of(requestDto)));
   }
 
   @Operation(tags = "City", summary = "도시 단건 조회", responses = {
@@ -77,8 +76,7 @@ public class CityController {
       @PathVariable("cityId") Long cityId,
       @Valid @RequestBody CityUpdateRequestDto cityUpdateRequestDto
   ) {
-    updateCityUseCase.updateCity(CityUpdateCommand.of(cityUpdateRequestDto,cityId));
-    return ResponseDto.ok();
+    return ResponseDto.ok(updateCityUseCase.updateCity(CityUpdateCommand.of(cityUpdateRequestDto,cityId)));
   }
 
   @Operation(tags = "City", summary = "도시 삭제", responses = {

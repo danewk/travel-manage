@@ -1,6 +1,6 @@
 package com.triple.travelmanage.city.adapter.out.persistence;
 
-import static com.triple.travelmanage.common.fixture.city.CityEntityFixture.첫번째_도시_엔티티;
+import static com.triple.travelmanage.common.fixture.city.CityEntityFixture.서울_도시_엔티티;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,7 +29,7 @@ class CityPersistenceQueryAdapterTest extends BaseRepositoryTest {
 
   @BeforeEach
   void setUp() {
-    cityRepository.saveAndFlush(첫번째_도시_엔티티());
+    cityRepository.saveAndFlush(서울_도시_엔티티());
   }
 
   @AfterEach
@@ -41,7 +41,7 @@ class CityPersistenceQueryAdapterTest extends BaseRepositoryTest {
   @Test
   void getCity(){
     City savedByCity = cityPersistenceQueryAdapter.getCityById(1L);
-    assertEquals(첫번째_도시_엔티티().getCityName(), savedByCity.getCityName());
+    assertEquals(서울_도시_엔티티().getCityName(), savedByCity.getCityName());
   }
 
   @DisplayName("단일 도시 조회 API - 실패시 예외 발생")

@@ -1,6 +1,6 @@
 package com.triple.travelmanage.city.adapter.out.persistence;
 
-import static com.triple.travelmanage.common.fixture.city.CityEntityFixture.첫번째_도시_엔티티;
+import static com.triple.travelmanage.common.fixture.city.CityEntityFixture.서울_도시_엔티티;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,7 +31,7 @@ class CityPersistenceCommandAdapterTest extends BaseRepositoryTest {
 
   @BeforeEach
   void setUp() {
-    cityRepository.saveAndFlush(첫번째_도시_엔티티());
+    cityRepository.saveAndFlush(서울_도시_엔티티());
   }
 
   @AfterEach
