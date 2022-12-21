@@ -2,7 +2,6 @@ package com.triple.travelmanage.city.application.service;
 
 import com.triple.travelmanage.city.application.port.in.CityInfo;
 import com.triple.travelmanage.city.application.port.in.GetCityUseCase;
-import com.triple.travelmanage.city.application.port.in.command.CityRetrieveCommand;
 import com.triple.travelmanage.city.application.port.out.GetCityPort;
 import com.triple.travelmanage.city.application.port.out.GetCitySearchHistoryPort;
 import com.triple.travelmanage.city.application.port.out.GetTravelPort;
@@ -59,15 +58,15 @@ public class GetCityService implements GetCityUseCase {
     return results;
   }
 
-  private static void filterIrrelevant(List<CityInfo> result, List<TravelInfo> travelInfos) {
+  private static void filterIrrelevant(List<CityInfo> temp, List<TravelInfo> travelInfos) {
     List<CityInfo> irrelevantCityInfos = new ArrayList<>(travelInfos.stream()
         .map(TravelInfo::cityInfo)
-        .filter(cityInfo -> !result.contains(cityInfo))
+        .filter(cityInfo -> !temp.contains(cityInfo))
         .toList());
 
     Collections.shuffle(irrelevantCityInfos);
 
-    result.addAll(irrelevantCityInfos);
+    temp.addAll(irrelevantCityInfos);
   }
 
   private void filterMoreThanOnceWithinAWeek(Long userId, List<CityInfo> result, List<TravelInfo> travelInfos) {
@@ -85,22 +84,22 @@ public class GetCityService implements GetCityUseCase {
     result.addAll(CityInfoMoreThanOnceWithinAWeek);
   }
 
-  private void filterRegisteredWithinOneDay(List<CityInfo> result, List<TravelInfo> travelInfos) {
+  private void filterRegisteredWithinOneDay(List<CityInfo> temp, List<TravelInfo> travelInfos) {
     List<CityInfo> cityInRegisteredWithinOneDay = travelInfos.stream().map(TravelInfo::cityInfo)
         .filter(this::registeredWithinOneDay)
         .sorted(Comparator.comparing(CityInfo::createdAt).reversed())
         .toList();
 
-    result.addAll(cityInRegisteredWithinOneDay);
+    temp.addAll(cityInRegisteredWithinOneDay);
   }
 
-  private void filterScheduledTravel(List<CityInfo> result, List<TravelInfo> travelInfos) {
+  private void filterScheduledTravel(List<CityInfo> temp, List<TravelInfo> travelInfos) {
     List<CityInfo> cityInScheduledTravel = travelInfos.stream().filter(this::scheduledTravel)
         .sorted(Comparator.comparing(TravelInfo::startDate))
         .map(TravelInfo::cityInfo)
         .toList();
 
-    result.addAll(cityInScheduledTravel);
+    temp.addAll(cityInScheduledTravel);
   }
 
   private boolean matchHistory(CityInfo cityInfo, List<Long> moreThanOnceWithinAWeekCityIds) {
